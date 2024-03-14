@@ -1,0 +1,26 @@
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.card {
+	border: 2px solid #333;
+	border-radius: 8px;
+	padding: 20px;
+	margin: 10px;
+	width: 300px;
+}
+
+.social-media a {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.interests ul {
+	list-style: none;
+	padding: 0;
+}
+
+.interests li {
+	margin-bottom: 5px;
+}
