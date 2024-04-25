@@ -14,7 +14,6 @@ export async function createUser(
 	password: string,
 	name: string
 ) {
-	await client.connect();
 	try {
 		const insertQuery = `INSERT INTO users(username,password,name) VALUES ($1,$2, $3 ) RETURNING *`;
 		const values = [username, password, name];
@@ -36,7 +35,6 @@ export async function createUser(
  * }
  */
 export async function getUser(userId: number) {
-	await client.connect();
 	try {
 		const getQuery = `select * from users where id = $1 `;
 		const uId = [userId];

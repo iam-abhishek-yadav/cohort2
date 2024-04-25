@@ -2,7 +2,6 @@
 import { client } from "../index";
 
 export async function createTables() {
-	await client.connect();
 	await client.query(`
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
@@ -24,7 +23,6 @@ export async function createTables() {
 }
 
 export async function dropTables() {
-	await client.connect();
 	await client.query(`DROP TABLE IF EXISTS todos;`);
 	await client.query(`DROP TABLE IF EXISTS users;`);
 }

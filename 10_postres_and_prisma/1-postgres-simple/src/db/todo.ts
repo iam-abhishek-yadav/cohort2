@@ -14,7 +14,6 @@ export async function createTodo(
 	title: string,
 	description: string
 ) {
-	await client.connect();
 	try {
 		const insertQuery = `INSERT INTO todos(user_id,title,description) 
     VALUES ($1, $2 , $3)
@@ -38,7 +37,6 @@ export async function createTodo(
  * }
  */
 export async function updateTodo(todoId: number) {
-	await client.connect();
 	try {
 		const getTodo = `UPDATE todos SET done = true WHERE id = $1 RETURNING id,title,description,done `;
 		const id = [todoId];
@@ -61,7 +59,6 @@ export async function updateTodo(todoId: number) {
  * }]
  */
 export async function getTodos(userId: number) {
-	await client.connect();
 	try {
 		const getQuery = `select * from todos 
           where user_id=$1`;
