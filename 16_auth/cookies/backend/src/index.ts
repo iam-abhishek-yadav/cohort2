@@ -2,18 +2,21 @@ import express, { Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import path from "path";
 
 const JWT_SECRET = "mysupersecret";
 
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
-app.use(
-	cors({
-		credentials: true,
-		origin: "http://localhost:5173",
-	})
-);
+// app.use(
+// 	cors({
+// 		credentials: true,
+// 		origin: "http://localhost:5173",
+// 	})
+// );
+
+app.use(cors());
 
 interface User {
 	id: number;
@@ -65,6 +68,10 @@ app.post("/signin", (req, res) => {
 app.post("/logout", (req, res) => {
 	res.clearCookie("token");
 	res.json({ message: "Logged out!" });
+});
+
+app.get("/", (req, res) => {
+	res.sendFile(path.join(__dirname, "../src/index.html"));
 });
 
 app.listen(3000, () => {
