@@ -1,13 +1,12 @@
-import styles from "./page.module.css";
 import { Button } from "@repo/ui/button";
 import { Admin } from "@repo/ui/admin";
 
-export default function Page(): JSX.Element {
+export default function App(): JSX.Element {
 	return (
 		<div>
 			<Button
 				appName='web'
-				className={styles.button}>
+				className={""}>
 				Click me!
 			</Button>
 			<Admin>Hi there from admin</Admin>;
