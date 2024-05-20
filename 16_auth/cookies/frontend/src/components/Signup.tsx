@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { BACKEND_URL } from "../config";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const Signup = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
 	return (
 		<div>
@@ -24,11 +26,15 @@ export const Signup = () => {
 			/>
 			<button
 				onClick={async () => {
-					await axios.post(`${BACKEND_URL}/signup`, {
-						username,
-						password,
-					});
-					alert("you are signed up");
+					try {
+						await axios.post(`${BACKEND_URL}/signup`, {
+							username,
+							password,
+						});
+						navigate("/signin");
+					} catch (error) {
+						console.error();
+					}
 				}}>
 				Submit
 			</button>
