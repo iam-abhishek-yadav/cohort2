@@ -1,5 +1,6 @@
 import { z, createRoute, OpenAPIHono } from "@hono/zod-openapi";
 import { swaggerUI } from "@hono/swagger-ui";
+import { cors } from "hono/cors";
 
 const ParamsSchema = z.object({
 	id: z
@@ -45,6 +46,8 @@ const route = createRoute({
 });
 
 const app = new OpenAPIHono();
+
+app.use("/*", cors({ origin: "http://localhost:5173" }));
 
 app.openapi(route, (c) => {
 	const { id } = c.req.valid("param");
